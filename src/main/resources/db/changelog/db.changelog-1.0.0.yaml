@@ -14,6 +14,11 @@
 #                    nullable: false
 #                    primaryKey: true
 #                    primaryKeyName: pk_example
-
+#              - column:
+#                  name: created_at
+#                  type: TIMESTAMP WITH TIME ZONE
+#              - column:
+#                  name: updated_at
+#                  type: TIMESTAMP WITH TIME ZONE
 
 
