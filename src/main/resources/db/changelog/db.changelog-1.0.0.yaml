@@ -1,119 +1,19 @@
-databaseChangeLog:
-  - property:
-      dbms: postgresql
-      name: uuid_type
-      value: uuid
-  - property:
-      dbms: postgresql
-      name: uuid_function
-      value: uuid_generate_v4()
-  - changeSet:
-      id: 1651087409483-1
-      author: gingapay.team
-      changes:
-        - createTable:
-            tableName: splits
-            columns:
-              - column:
-                  name: id
-                  type: UUID
-                  constraints:
-                    unique: true
-                    nullable: false
-                    primaryKey: true
-                    primaryKeyName: pk_split
-              - column:
-                  name: created_at
-                  type: TIMESTAMP WITHOUT TIME ZONE
-              - column:
-                  name: updated_at
-                  type: TIMESTAMP WITHOUT TIME ZONE
-              - column:
-                  name: left_for_rounding_percentage
-                  type: NUMERIC
-              - column:
-                  name: organization_identity
-                  type: VARCHAR(299)
-              - column:
-                  name: platform
-                  type: VARCHAR(299)
-              - column:
-                  name: order_id
-                  type: VARCHAR(299)
-              - column:
-                  name: market_place_percentage
-                  type: NUMERIC
-              - column:
-                  name: total
-                  type: NUMERIC
-
-        - createTable:
-            tableName: orders
-            columns:
-              - column:
-                  name: id
-                  type: UUID
-                  constraints:
-                    unique: true
-                    nullable: false
-                    primaryKey: true
-                    primaryKeyName: pk_orders
-              - column:
-                  name: created_at
-                  type: TIMESTAMP WITHOUT TIME ZONE
-              - column:
-                  name: updated_at
-                  type: TIMESTAMP WITHOUT TIME ZONE
-              - column:
-                  name: stores_id
-                  type: VARCHAR(299)
-              - column:
-                  name: splits_id
-                  type: UUID
-                  constraints:
-                    nullable: false
-                    foreignKeyName: fk_orders_splits
-                    references: splits(id)
-
-        - createTable:
-            tableName: items
-            columns:
-              - column:
-                  name: id
-                  type: UUID
-                  constraints:
-                    unique: true
-                    nullable: false
-                    primaryKey: true
-                    primaryKeyName: pk_items
-              - column:
-                  name: created_at
-                  type: TIMESTAMP WITHOUT TIME ZONE
-              - column:
-                  name: updated_at
-                  type: TIMESTAMP WITHOUT TIME ZONE
-              - column:
-                  name: product_commission
-                  type: NUMERIC
-              - column:
-                  name: shipping_commission
-                  type: NUMERIC
-              - column:
-                  name: gross_commission
-                  type: NUMERIC
-              - column:
-                  name: gross_order_value
-                  type: NUMERIC
-              - column:
-                  name: split_percentage
-                  type: NUMERIC
-              - column:
-                  name: orders_id
-                  type: UUID
-                  constraints:
-                    nullable: false
-                    foreignKeyName: fk_items_orders
-                    references: orders(id)
+#databaseChangeLog:
+#  - changeSet:
+#      id: 1651087409483-1                           Gerar um timesstamp utilizando sites exemplo: https://timestampgenerator.com/
+#      author: gingapay.team
+#      changes:
+#        - createTable:
+#            tableName: example
+#            columns:
+#              - column:
+#                  name: id
+#                  type: UUID
+#                  constraints:
+#                    unique: true
+#                    nullable: false
+#                    primaryKey: true
+#                    primaryKeyName: pk_example
 
 
 

@@ -1,5 +1,11 @@
 databaseChangeLog:
-  - include:
-      file: db/changelog/db.changelog-1.0.0.yaml
-  - include:
-      file: db/changelog/db.changelog-1.0.1.yaml
+  - property:
+      dbms: postgresql
+      name: uuid_type
+      value: uuid
+  - property:
+      dbms: postgresql
+      name: uuid_function
+      value: uuid_generate_v4()
+#  - include:
+#      file: db/changelog/db.changelog-1.0.0.yaml

@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.gingapay</groupId>
-    <artifactId>split-core-application-api</artifactId>
+    <artifactId>template-application</artifactId>
     <version>1.0.0-RELEASE</version>
-    <name>split-core-application-api</name>
-    <description>split-core-application-api</description>
+    <name>template-application</name>
+    <description>template-application</description>
     <properties>
         <java.version>11</java.version>
     </properties>

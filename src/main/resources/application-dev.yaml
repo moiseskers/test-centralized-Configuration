@@ -12,14 +12,15 @@ spring:
     oauth2:
       resourceserver:
         opaquetoken:
-          introspection-uri: ${CONNECT_INTROSPECTION_URI}
-          client-id: ${CONNECT_CLIENT_ID}
-          client-secret: ${CONNECT_CLIENT_SECRET}
+          introspection-uri: https://connect-application-api.hml.gingapay.io/oauth/check_token
+          client-id: eb3cb944-d1b6-4360-88df-72e27be4c2d2
+          client-secret: secret
   datasource:
-    url: ${DATABASE_CONNECTION_STRING}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
+    url: jdbc:postgresql://104.131.1.128:25432/dbaccount
+    username: connect_development
+    password: p25Hb3Xy5PAhys4CkJTsmhXh
   jpa:
+    show-sql: true
     hibernate:
       ddl-auto: validate
       naming:
@@ -39,4 +40,10 @@ logging:
       hibernate: INFO
       filter:
         CommonsRequestLoggingFilter: INFO
-    com.gingapay.templateapplication.resource: INFO
+    com.gingapay.templateapplicationapi.resource: INFO
+
+springdoc:
+  swagger-ui:
+    tryItOutEnabled: true
+    filter: true
+    persistAuthorization: true

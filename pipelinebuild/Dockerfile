@@ -1,9 +1,9 @@
 FROM openjdk:11
 
-LABEL source="git@bitbucket.org:gingapay/split-core-application-api.git"
+LABEL source="git@bitbucket.org:gingapay/template-application.git"
 
-COPY target/split-core-application-api-1.0.0-RELEASE.jar split-core-application-api.jar
+COPY target/template-application-1.0.0-RELEASE.jar template-application.jar
 
 EXPOSE 80 443
 
-ENTRYPOINT ["java","-jar","/split-core-application-api.jar"]
+ENTRYPOINT ["java","-jar","/template-application.jar"]

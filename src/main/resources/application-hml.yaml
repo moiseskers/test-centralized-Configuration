@@ -40,3 +40,9 @@ logging:
       filter:
         CommonsRequestLoggingFilter: INFO
     com.gingapay.templateapplication.resource: INFO
+
+springdoc:
+  swagger-ui:
+    tryItOutEnabled: true
+    filter: true
+    persistAuthorization: true
