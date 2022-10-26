@@ -1,0 +1,69 @@
+image:
+  name: atlassian/default-image:2
+
+buildApp: &buildApp
+  step:
+    name: Build application
+    size: 2x
+    image: maven:3-jdk-11
+    script:
+      - mvn clean package -s pipelinebuild/settings.xml
+    artifacts:
+      - target/*.jar
+    services:
+      - docker
+
+buildandpush: &buildandpush
+  step:
+    name: Push and Tag
+    size: 2x
+    script:
+      - docker build -t $APPNAME . -f pipelinebuild/Dockerfile
+      - pipe: atlassian/aws-ecr-push-image:1.5.0
+        variables:
+          IMAGE_NAME: $APPNAME
+          TAGS: $BITBUCKET_BUILD_NUMBER
+    services:
+      - docker
+
+gitops: &gitops
+  step:
+    name: Gitops
+    script:
+      - pipe: docker://public.ecr.aws/f4e9b1j7/gitops:1.0.10
+        variables:
+          SERVICE_NAME: $APPNAME
+          TAG: $BITBUCKET_BUILD_NUMBER
+          KEY: $APPPASSWORD
+    services:
+      - docker
+    artifacts:
+      download: false
+
+argocd: &argocd
+  step:
+    name: ArgoCD Sync
+    runs-on: k8s
+    size: 2x
+    script:
+      - pipe: docker://public.ecr.aws/f4e9b1j7/argocdsync:1.0.3
+        variables:
+          APP_NAME: $APPNAME
+          TOKENARGO: $ARGOCDTOKEN
+    services:
+      - docker
+    artifacts:
+      download: false
+
+pipelines:
+  branches:
+    master:
+      - <<: *buildApp
+      - <<: *buildandpush
+      - <<: *gitops
+      - <<: *argocd
+    homolog:
+      - <<: *buildApp
+      - <<: *buildandpush
+      - <<: *gitops
+      - <<: *argocd

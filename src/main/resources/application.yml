@@ -1,0 +1,69 @@
+server:
+  port: ${PORT:5007}
+  error:
+    include-message: always
+
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_HOST:104.131.1.128}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:gingapay}
+    password: ${RABBITMQ_PASSWORD:gingapay}
+  security:
+    oauth2:
+      resourceserver:
+        opaquetoken:
+          introspection-uri: ${GINGAPAY_CONNECT_INTROSPECTION_URI:https://connect-application-api-i4fyy.ondigitalocean.app/oauth/check_token}
+          client-id: ${GINGAPAY_CONNECT_CLIENT_ID:eb3cb944-d1b6-4360-88df-72e27be4c2d2}
+          client-secret: ${GINGAPAY_CONNECT_CLIENT_SECRET:secret}
+  datasource:
+    url: ${DATABASE_CONNECTION_STRING:jdbc:postgresql://104.131.1.128:25432/dbsplitcore}
+    username: ${DATABASE_USERNAME:connect_development}
+    password: ${DATABASE_PASSWORD:p25Hb3Xy5PAhys4CkJTsmhXh}
+  jpa:
+    hibernate:
+      SQL: debug
+      type: TRACE
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        format_sql: true
+        temp:
+          use_jdbc_metadata_defaults: false
+
+gingapay:
+  order_details:
+    webservice-uri: ${ORDER_DETAILS_WEBSERVICE_URI:https://order-details-application-xymvu.ondigitalocean.app}
+  connect:
+    webservice-uri: ${GINGAPAY_CONNECT_WEBSERVICE_URI:https://connect-application-api-i4fyy.ondigitalocean.app}
+  payment:
+    webservice-uri: ${GINGAPAY_PAYMENT_WEBSERVICE_URI:https://payment-application-api-uhcbw.ondigitalocean.app}
+  queues:
+    new-orders:
+      name: new-orders-queue
+    new-split-queue:
+      name: new-split-queue
+    split-distribution-queue:
+      name: new-split-distribution-queue
+
+springdoc:
+  swagger-ui:
+    tryItOutEnabled: true
+    filter: true
+    persistAuthorization: true
+
+logging:
+  level:
+    org:
+      springframework:
+        web: TRACE
+      hibernate: INFO
+      filter:
+        CommonsRequestLoggingFilter: DEBUG
+    com.gingapay.splitcoreapplicationapi.resource: DEBUG
+
+
+
