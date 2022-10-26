@@ -1,6 +1,6 @@
 #databaseChangeLog:
 #  - changeSet:
-#      id: 1651087409483-1                           Gerar um timesstamp utilizando sites exemplo: https://timestampgenerator.com/
+#      id: 1651087409483-1                           Gerar um timesstamp utilizando sites exemplo: https://www.unixtimestamp.com/
 #      author: gingapay.team
 #      changes:
 #        - createTable:
