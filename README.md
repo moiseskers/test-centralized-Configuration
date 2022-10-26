@@ -68,6 +68,6 @@
             
             2 - @Bean
                 public MessageConverter converter() {
-                return new Jackson2JsonMessageConverter();
+                    return new Jackson2JsonMessageConverter();
                 }
 
