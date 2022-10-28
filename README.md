@@ -29,7 +29,7 @@
     Caminhos:
         docker/docker-compose.yml:
             De: - POSTGRES_DB=dbtemplate
-            Para: De: - POSTGRES_DB={{nome do banco do micro serviço}}****
+            Para: De: - POSTGRES_DB={{nome do banco do micro serviço}}
 ``` 
 ### 5 - Renomar classe main:
 ``` 
