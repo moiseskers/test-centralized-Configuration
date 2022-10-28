@@ -1,6 +1,7 @@
 ## Projeto Template
 
-###1 - Dar um replace all nos arquivo:
+### 1 - Dar um replace all nos arquivo:
+```
     Caminhos:
         pom.xml:
             De: template-application
@@ -9,31 +10,36 @@
         pipelinebuild/Dockerfile:
                 De: template-application
                 Para: {{nome do novo microserviço}}
-
-###2 - Trocar essas linhas:
+```                
+### 2 - Trocar essas linhas:
+``` 
     Caminhos:
         src/main/java/com/gingapay/templateapplication/configuration/OpenApi30Config.java:
         @OpenAPIDefinition(info = @Info(title = {{nome do novo microserviço}}, version = "v1"))
-
-###3 - Configuração do banco (postgres, nem todas as aplicações vão utilizar esse banco):
+``` 
+### 3 - Configuração do banco (postgres, nem todas as aplicações vão utilizar esse banco):
+``` 
     Caminhos:
         src/main/resources/application-local.yaml:
             De: url: jdbc:postgresql://localhost:25432/dbtemplate
             De: url: jdbc:postgresql://localhost:25432/{{nome do banco do micro serviço}}
-
-###4 - Configuração docker para gerar um banco local:
+``` 
+### 4 - Configuração docker para gerar um banco local:
+``` 
     Caminhos:
         docker/docker-compose.yml:
             De: - POSTGRES_DB=dbtemplate
             Para: De: - POSTGRES_DB={{nome do banco do micro serviço}}****
-
-###5 - Renomar classe main:
+``` 
+### 5 - Renomar classe main:
+``` 
     Caminhos:
         src/main/java/com/gingapay/templateapplication/TemplateApplication.java:
         De: TemplateApplication.java
         Para: {{nome do novo microserviço}}.java
-
-###Passos opcionais para rodar o projeto no localhost:
+``` 
+### Passos opcionais para rodar o projeto no localhost:
+``` 
     1 - Utilizar o arquivo já configurado no passo 4 para iniciar um banco local (caso a aplicação tenha banco de dados)
         Caminhos:
             docker/docker-compose.yml: 	
@@ -70,4 +76,4 @@
                 public MessageConverter converter() {
                     return new Jackson2JsonMessageConverter();
                 }
-
+``` 
