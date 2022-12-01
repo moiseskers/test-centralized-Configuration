@@ -3,11 +3,11 @@
 ```
     Caminhos:
         pom.xml:
-            De: template-application
+            De: gingapay-centralized-configuration--application
             Para: {{nome do novo microserviço}}
     
         pipelinebuild/Dockerfile:
-                De: template-application
+                De: gingapay-centralized-configuration--application
                 Para: {{nome do novo microserviço}}
 ```
 ### 2 - Trocar essas linhas:

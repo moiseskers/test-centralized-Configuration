@@ -1,9 +1,9 @@
 FROM openjdk:11
 
-LABEL source="git@bitbucket.org:gingapay/template-application.git"
+LABEL source="git@bitbucket.org:gingapay/gingapay-centralized-configuration--application.git"
 
-COPY target/template-application-1.0.0-RELEASE.jar template-application.jar
+COPY target/gingapay-centralized-configuration--application-1.0.0-RELEASE.jar gingapay-centralized-configuration--application.jar
 
 EXPOSE 80 443
 
-ENTRYPOINT ["java","-jar","/template-application.jar"]
+ENTRYPOINT ["java","-jar","/gingapay-centralized-configuration--application.jar"]
